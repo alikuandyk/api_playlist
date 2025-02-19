@@ -19,6 +19,7 @@ public class PlaylistMapper {
         PlaylistResponseDto playlistResponseDto = new PlaylistResponseDto();
         playlistResponseDto.setId(playlist.getId());
         playlistResponseDto.setAuthor(playlist.getAuthor());
+        playlist.setTracks(playlist.getTracks());
 
         return playlistResponseDto;
     }
@@ -26,11 +27,12 @@ public class PlaylistMapper {
     public Playlist fromUpdate(PlaylistUpdateDto playlistUpdateDto) {
         Playlist playlist = new Playlist();
 
-        playlistUpdateDto.getTracks().forEach(track -> {
-            Track newTrack = new Track();
-            newTrack.setName(track.getName());
-            newTrack.setArtist(track.getArtist());
-            playlist.
-        })
+        playlist.setTracks(playlistUpdateDto.getTracks());
+        return playlist;
     }
+
+    public void merge(Playlist existingPlaylist, PlaylistUpdateDto updateDto) {
+        if (updateDto.getTracks() != null && !updateDto.getTracks().isEmpty()) {
+            existingPlaylist.setTracks(updateDto.getTracks());
+        }    }
 }
