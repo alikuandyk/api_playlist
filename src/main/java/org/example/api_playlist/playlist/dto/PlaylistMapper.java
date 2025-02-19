@@ -2,37 +2,28 @@ package org.example.api_playlist.playlist.dto;
 
 import org.example.api_playlist.playlist.Playlist;
 import org.example.api_playlist.track.Track;
+import org.example.api_playlist.track.dto.TrackMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class PlaylistMapper {
-    public Playlist fromCreate(PlaylistCreateDto playlistCreateDto) {
-        Playlist playlist = new Playlist();
-        playlist.setAuthor(playlistCreateDto.getAuthor());
+    private final TrackMapper trackMapper;
 
-        return playlist;
+    public PlaylistMapper(TrackMapper trackMapper) {
+        this.trackMapper = trackMapper;
     }
 
     public PlaylistResponseDto toResponse(Playlist playlist) {
         PlaylistResponseDto playlistResponseDto = new PlaylistResponseDto();
         playlistResponseDto.setId(playlist.getId());
-        playlistResponseDto.setAuthor(playlist.getAuthor());
-        playlist.setTracks(playlist.getTracks());
+        playlistResponseDto.setAuthor(playlist.getAuthor().getId());
+        playlistResponseDto.setTracks(playlist.getTracks().stream()
+                .map(trackMapper::toResponse)
+                .toList());
 
         return playlistResponseDto;
     }
-
-    public Playlist fromUpdate(PlaylistUpdateDto playlistUpdateDto) {
-        Playlist playlist = new Playlist();
-
-        playlist.setTracks(playlistUpdateDto.getTracks());
-        return playlist;
-    }
-
-    public void merge(Playlist existingPlaylist, PlaylistUpdateDto updateDto) {
-        if (updateDto.getTracks() != null && !updateDto.getTracks().isEmpty()) {
-            existingPlaylist.setTracks(updateDto.getTracks());
-        }    }
 }

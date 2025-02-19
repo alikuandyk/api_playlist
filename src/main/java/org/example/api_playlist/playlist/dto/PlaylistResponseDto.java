@@ -12,5 +12,5 @@ import java.util.List;
 public class PlaylistResponseDto {
     int id;
     List<TrackResponseDto> tracks;
-    String author;
+    int author;
 }

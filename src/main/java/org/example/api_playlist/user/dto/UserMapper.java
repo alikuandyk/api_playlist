@@ -10,7 +10,7 @@ public class UserMapper {
 
         user.setName(userCreateDto.getName());
         user.setEmail(userCreateDto.getEmail());
-        user.setCreated(userCreateDto.getCreated());
+//        user.setCreated(userCreateDto.getCreated());
         return user;
     }
 
@@ -20,7 +20,7 @@ public class UserMapper {
         userResponseDto.setId(user.getId());
         userResponseDto.setName(user.getName());
         userResponseDto.setEmail(user.getEmail());
-        userResponseDto.setCreated(user.getCreated());
+//        userResponseDto.setCreated(user.getCreated());
 
         return userResponseDto;
     }

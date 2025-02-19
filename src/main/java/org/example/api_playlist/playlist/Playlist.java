@@ -1,9 +1,11 @@
 package org.example.api_playlist.playlist;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.example.api_playlist.track.Track;
+import org.example.api_playlist.user.User;
 
 import java.util.List;
 
@@ -20,11 +22,13 @@ public class Playlist {
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
     int id;
 
+    String name;
+
     @ManyToMany
     @JoinTable(name = "tracks_playlists",
             joinColumns = @JoinColumn(name = "playlist_id"),
             inverseJoinColumns = @JoinColumn(name = "track_id"))
     List<Track> tracks;
 
-    String author;
+    User author;
 }

@@ -12,4 +12,10 @@ public class GlobalExceptionHandler {
     public ErrorResponse handleNotFoundException(UserAlreadyExistException e) {
         return new ErrorResponse(e.getMessage(), HttpStatus.CONFLICT);
     }
+
+    @ExceptionHandler(ForbiddenException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public ErrorResponse handleForbiddenException(ForbiddenException e) {
+        return new ErrorResponse(e.getMessage(), HttpStatus.FORBIDDEN);
+    }
 }
