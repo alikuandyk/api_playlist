@@ -1,6 +1,5 @@
-package org.example.api_playlist.repository;
+package org.example.api_playlist.track;
 
-import org.example.api_playlist.model.Track;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TrackRepository extends JpaRepository<Track, Integer> {

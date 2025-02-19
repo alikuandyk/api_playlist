@@ -8,7 +8,7 @@ create table users(
 create table tracks(
     id serial8 primary key,
     name varchar(255) not null,
-    artists varchar
+    artist varchar
 );
 
 create table playlists(

@@ -1,4 +1,4 @@
-package org.example.api_playlist.model;
+package org.example.api_playlist.user;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

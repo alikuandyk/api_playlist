@@ -1,7 +1,6 @@
-package org.example.api_playlist.service;
+package org.example.api_playlist.playlist;
 
 import lombok.RequiredArgsConstructor;
-import org.example.api_playlist.repository.PlaylistRepository;
 import org.springframework.stereotype.Service;
 
 @Service
