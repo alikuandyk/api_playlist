@@ -30,5 +30,7 @@ public class Playlist {
             inverseJoinColumns = @JoinColumn(name = "track_id"))
     List<Track> tracks;
 
+    @ManyToOne
+    @JoinColumn(name = "author_id")
     User author;
 }

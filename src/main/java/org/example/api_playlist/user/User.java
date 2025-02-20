@@ -2,9 +2,7 @@ package org.example.api_playlist.user;
 
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.FieldDefaults;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
 
 @Entity
@@ -23,5 +21,5 @@ public class User {
 
     private String email;
 
-    Instant created;
+    LocalDateTime created;
 }

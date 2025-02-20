@@ -32,7 +32,7 @@ public class PlaylistService {
         return playlistRepository.findAll();
     }
 
-    public Playlist addTracks(int playlistId, List<Integer> tracksId, String userId) {
+    public Playlist addTracks(int playlistId, List<Integer> tracksId, int userId) {
         if (checkAuthorOfPlaylist(playlistId, userId)) {
             throw new ForbiddenException("В плейлист может добавлять только автор");
         }
@@ -45,7 +45,7 @@ public class PlaylistService {
         return playlist;
     }
 
-    public void deleteTracksInPlaylist(int playlistId, List<Integer> tracksId, String userId) {
+    public void deleteTracksInPlaylist(int playlistId, List<Integer> tracksId, int userId) {
         if (checkAuthorOfPlaylist(playlistId, userId)) {
             throw new ForbiddenException("Удалять треки может только автор");
         }
@@ -55,8 +55,8 @@ public class PlaylistService {
         playlistRepository.save(playlist);
     }
 
-    public boolean checkAuthorOfPlaylist(int playlistId, String userId) {
+    public boolean checkAuthorOfPlaylist(int playlistId, int userId) {
         Playlist playlist = findById(playlistId);
-        return !playlist.getAuthor().equals(userId);
+        return !playlist.getAuthor().equals(userRepository.findById(userId).orElseThrow());
     }
 }

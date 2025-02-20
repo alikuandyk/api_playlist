@@ -1,18 +1,18 @@
 create table if not exists users(
-    id serial primary key,
+    id serial8 primary key,
     name varchar(255) not null,
     email varchar unique,
-    created timestamp without time zone
+    created timestamp
 );
 
 create table if not exists tracks(
-    id serial primary key,
+    id serial8 primary key,
     name varchar(255) not null,
     artist varchar
 );
 
 create table if not exists playlists(
-    id serial primary key,
+    id serial8 primary key,
     name varchar not null,
     author_id int8 references users(id)
 );
