@@ -2,6 +2,7 @@ package org.example.api_playlist.playlist;
 
 import lombok.RequiredArgsConstructor;
 import org.example.api_playlist.exception.ForbiddenException;
+import org.example.api_playlist.exception.NotFoundException;
 import org.example.api_playlist.track.Track;
 import org.example.api_playlist.track.TrackRepository;
 import org.example.api_playlist.user.UserRepository;
@@ -19,7 +20,7 @@ public class PlaylistService {
     public Playlist create(int userId, String playlistName) {
         Playlist playlist = new Playlist();
         playlist.setName(playlistName);
-        playlist.setAuthor(userRepository.findById(userId).orElseThrow());
+        playlist.setAuthor(userRepository.findById(userId).orElseThrow(() -> new NotFoundException("Пользователь с ID " + userId + " не найден")));
 
         return playlistRepository.save(playlist);
     }

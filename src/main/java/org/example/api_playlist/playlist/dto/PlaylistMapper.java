@@ -1,12 +1,12 @@
 package org.example.api_playlist.playlist.dto;
 
 import org.example.api_playlist.playlist.Playlist;
-import org.example.api_playlist.track.Track;
 import org.example.api_playlist.track.dto.TrackMapper;
+import org.example.api_playlist.track.dto.TrackResponseDto;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 public class PlaylistMapper {
@@ -18,11 +18,15 @@ public class PlaylistMapper {
 
     public PlaylistResponseDto toResponse(Playlist playlist) {
         PlaylistResponseDto playlistResponseDto = new PlaylistResponseDto();
+
         playlistResponseDto.setId(playlist.getId());
         playlistResponseDto.setAuthor(playlist.getAuthor().getId());
-        playlistResponseDto.setTracks(playlist.getTracks().stream()
-                .map(trackMapper::toResponse)
-                .toList());
+
+        List<TrackResponseDto> tracks = playlist.getTracks() != null
+                ? playlist.getTracks().stream().map(trackMapper::toResponse).toList()
+                : Collections.emptyList();
+
+        playlistResponseDto.setTracks(tracks);
 
         return playlistResponseDto;
     }

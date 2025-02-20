@@ -21,5 +21,5 @@ public class User {
 
     private String email;
 
-    LocalDateTime created;
+    LocalDateTime created = LocalDateTime.now();
 }
